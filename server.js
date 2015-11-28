@@ -1,38 +1,37 @@
-var path = require('path');
-var fs = require('fs');
-var express = require('express');
-var app = express();
-var marked = require('marked');
+const path = require('path');
+const express = require('express');
+const app = express();
 
-app.get('/favicon.ico', function(req, res) {
-  return res.sendStatus(404);
-});
+const renderMarkdownFile = require('./MarkdownFileRenderer');
+const renderTemplate = require('./TemplateRenderer');
 
-app.get('/:title', function(req, res) {
-  var title = req.params.title;
-  var postPath = path.join(__dirname, 'posts', title + '.md');
+app.get('/favicon.ico', (req, res) => res.sendStatus(404));
 
-  fs.readFile(postPath, 'utf8', function(err, markdown) {
-    if (err) {
+app.get('/:title', (req, res) => {
+  const title = req.params.title;
+  const postPath = path.join(__dirname, 'posts', title + '.md');
+
+  renderMarkdownFile(postPath)
+    .then(renderedPost => {
+      const replacements = {
+        post: renderedPost,
+      };
+
+      renderTemplate('application.template', replacements)
+        .then(html => res.send(html))
+        .catch(err => {
+          console.log(err);
+          res.status(500).send('Something went wrong!')
+        });
+    })
+    .catch(err => {
       console.log(err);
       return res.status(404).send('Could not find a post called "' + title + '.md"');
-    }
-
-    var indexPath = path.join(__dirname, 'index.html');
-    fs.readFile(indexPath, 'utf8', function(err, template) {
-      if (err) {
-        console.log(err);
-        return res.send(500).send('Something went wrong.');
-      }
-
-      var renderedPost = marked(markdown);
-      var html = template.replace(/\{\{POSTS\}\}/g, renderedPost);
-      res.send(html);
     });
-  }); 
+
 });
 
-app.listen(5678, function(err) {
+app.listen(5678, err => {
   if (err) throw new Error(err);
   console.log('listening on port', 5678);
 });
