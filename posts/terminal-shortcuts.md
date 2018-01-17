@@ -56,3 +56,29 @@ Or, combine with `!$` to make it even shorter:
 grep "a needle" ./some-file.txt
 rg !:1 !$
 ```
+
+### `!!`
+
+Also closely related to `!$` and `!:2`, `!!` is substituted with the entire previous command.
+
+You may be looking for all occurrences of "a needle" in all files in a directory:
+
+```zsh
+grep -R "a needle"
+```
+
+You may then want to only list matching file names (using `grep`'s `-l` switch).
+
+Here's how to not do it:
+
+```zsh
+grep -R "a needle"
+grep -R "a needle" -l
+```
+
+Here's how to use `!!`:
+
+```zsh
+grep -R "a needle"
+!! -l
+```
