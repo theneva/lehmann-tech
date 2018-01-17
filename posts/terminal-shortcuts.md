@@ -91,6 +91,6 @@ Inspired by the autosuggestion system in [fish](http://fishshell.com/), it uses 
 
 The functionality overlaps greatly with the reverse-i-search (<kbd>ctrl</kbd>+<kbd>R</kbd>), but I frequently forget that I can search my history; the autosuggestions function as a reminder to avoid repetition.
 
-![zsh-autocomplete completes my vim command, adjusting as I type](https://github.com/theneva/lehmann-tech/blob/master/zsh-autocomplete.gif?raw=true)
+![zsh-autosuggestions completes my vim command, adjusting as I type](https://raw.githubusercontent.com/theneva/lehmann-tech/master/zsh-autocomplete.gif)
 
-Here, zsh-autocomplete first attempts to complete my command to the last command I ran. As I type something that doesn't match its prediction, it adjusts the prediction. Hitting <kbd>→</kbd> completes the command.
+Here, zsh-autosuggestions first attempts to complete my command to the last command I ran. As I type something that doesn't match its prediction, it adjusts the prediction. Hitting <kbd>→</kbd> completes the command.
