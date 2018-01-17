@@ -82,3 +82,15 @@ Here's how to use `!!`:
 grep -R "a needle"
 !! -l
 ```
+
+### `zsh-autosuggestions`
+
+Admittedly, [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) is a plugin, not a shortcut.
+
+Inspired by the autosuggestion system in [fish](http://fishshell.com/), it uses your command history to offer autocompletion of the command you're currently typing.
+
+The functionality overlaps greatly with the reverse-i-search (<kbd>ctrl</kbd>+<kbd>R</kbd>), but I frequently forget that I can search my history; the autosuggestions function as a reminder to avoid repetition.
+
+![zsh-autocomplete completes my vim command, adjusting as I type](https://github.com/theneva/lehmann-tech/blob/master/zsh-autocomplete.gif?raw=true)
+
+Here, zsh-autocomplete first attempts to complete my command to the last command I ran. As I type something that doesn't match its prediction, it adjusts the prediction. Hitting <kbd>→</kbd> completes the command.
