@@ -1,0 +1,2 @@
+Hello, world!
+Isn't it great?
