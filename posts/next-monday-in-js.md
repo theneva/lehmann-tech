@@ -17,3 +17,7 @@ function nextMondayDateString() {
   return `${nextMonday.getDate()}.${nextMonday.getMonth()}.${nextMonday.getFullYear()}`;
 }
 ```
+
+```
+moment().day(8).format('DD.MM.YYYY');
+```
