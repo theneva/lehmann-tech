@@ -20,7 +20,7 @@ function nextMondayDateString() {
 }
 ```
 
-Alternatively, if you already have [Moment.js](https://momentjs.com/) in your project:
+Alternatively, if you already have [Moment.js](https://momentjs.com/) in your project and need [.day()](https://momentjs.com/docs/#/get-set/day/) :
 
 ```
 moment().day(8).format('DD.MM.YYYY');
