@@ -2,6 +2,7 @@
   "name": "lehmann-tech-server",
   "dependencies": {
     "express": "^4.13.3",
+    "highlight.js": "^9.13.1",
     "marked": "^0.3.5"
   }
 }
