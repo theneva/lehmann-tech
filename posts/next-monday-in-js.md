@@ -1,5 +1,7 @@
 # Get the date of the next Monday in JS
 
+With plain JS:
+
 ```js
 function nextMondayDateString() {
   // Get the current date for math purposes later.
@@ -17,6 +19,8 @@ function nextMondayDateString() {
   return `${nextMonday.getDate()}.${nextMonday.getMonth()}.${nextMonday.getFullYear()}`;
 }
 ```
+
+Alternatively, if you already have [Moment.js](https://momentjs.com/) in your project:
 
 ```
 moment().day(8).format('DD.MM.YYYY');
