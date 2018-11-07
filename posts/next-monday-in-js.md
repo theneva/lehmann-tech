@@ -7,13 +7,13 @@ function nextMondayDateString() {
   // Get the current date for math purposes later.
   const now = new Date();
   
-  // Start from now
+  // 1. Starting from from the current date…
   const nextMonday = new Date(); 
  
-  // Add 8 days to the current date, then subtract the current day.
-  // Sunday = day 0, Saturday = day 6.
-  // Monday is 2 days from Saturday, so 6 + 2 = 8.
-  nextMonday.setDate(now.getDate() + 8 - now.getDay());
+  // 2. Subtract the current week day to get the first day of the current week (Sunday)
+  // 3. Add 1 to get the date of the current week's Monday
+  // 4. Add 7 to get the date of next week's Monday
+  nextMonday.setDate(now.getDate() - now.getDay() + 8); // 8 = 1 + 7
 
   // Format it as required. This yields DD.MM.YYYY
   return `${nextMonday.getDate()}.${nextMonday.getMonth()}.${nextMonday.getFullYear()}`;
