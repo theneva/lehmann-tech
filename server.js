@@ -3,50 +3,39 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 
-const renderMarkdownFile = require('./MarkdownFileRenderer');
-const renderTemplate = require('./TemplateRenderer');
+const readFile = require('./read-file');
 
 app.get('/favicon.ico', (req, res) => res.sendStatus(404));
 
-app.get('/', (req, res) => {
+app.get('/posts', (req, res) => {
   return fs.readdir(path.join(__dirname, 'posts'), (err, fileNames) => {
     if (err) {
       console.log(err);
-      return res.status(500).send('Something went wrong!');
+      res.status(500).send('Something went wrong!');
+      return;
     }
 
-    const fileListHtml = '<ul>' + fileNames.map(fileName => `<li><a href="/${fileName}">${fileName}</a></li>`).join('') + '</ul>';
-    return res.send(fileListHtml);
+    const posts = fileNames.map(fileName => ({ title: fileName }));
+
+    res.send(posts);
   });
 });
 
-app.get('/:title', (req, res) => {
+app.get('/posts/:title', (req, res) => {
   const rawTitle = req.params.title;
 
-  const title = rawTitle.endsWith('.md')
-    ? rawTitle
-    : `${rawTitle}.md`;
+  const title = rawTitle.endsWith('.md') ? rawTitle : `${rawTitle}.md`;
 
   const postPath = path.join(__dirname, 'posts', title);
 
-  renderMarkdownFile(postPath)
-    .then(renderedPost => {
-      const replacements = {
-        post: renderedPost,
-      };
-
-      renderTemplate('application.template', replacements)
-        .then(html => res.send(html))
-        .catch(err => {
-          console.log(err);
-          res.status(500).send('Something went wrong!')
-        });
-    })
+  readFile(postPath)
+    .then(markdown => res.send({ markdown }))
     .catch(err => {
       console.log(err);
-      return res.status(404).send('Could not find a post called "' + title + '.md"');
+      return res
+        .status(404)
+        .send('Could not find a post called "' + title + '.md"');
     });
-
 });
 
 app.listen(5678, err => {
