@@ -12,6 +12,7 @@ RUN ln -s /app/packages/client/build /app/packages/server/public
 
 ENV NODE_ENV production
 RUN yarn install --frozen-lockfile --production
+RUN yarn cache clean
 
 EXPOSE 5678
 CMD ["yarn", "--cwd", "packages/server", "start"]
