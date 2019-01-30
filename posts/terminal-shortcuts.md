@@ -10,7 +10,7 @@ Week 1 is all about not typing out the same command multiple times.
 
 ### `!$`
 
-`!$` refers to the __last__ token from the previous command. Here's how to _not_ use it:
+`!$` refers to the **last** token from the previous command. Here's how to _not_ use it:
 
 ```zsh
 grep "a needle" ./some-file.txt
@@ -34,7 +34,7 @@ Reusing the example, `grep "a needle" ./some-file.txt` contains the following th
 
 0. `grep`
 1. `"a needle"`
-2. `./some-file.txt`
+1. `./some-file.txt`
 
 Here, `!:2` refers to the token at index 2: `./some-file.txt`. Therefore, we can achieve our goal as such:
 
@@ -91,6 +91,6 @@ Inspired by the autosuggestion system in [fish](http://fishshell.com/), it uses 
 
 The functionality overlaps greatly with the reverse-i-search (<kbd>ctrl</kbd>+<kbd>R</kbd>), but I frequently forget that I can search my history; the autosuggestions function as a reminder to avoid repetition.
 
-![zsh-autosuggestions completes my vim command, adjusting as I type](https://raw.githubusercontent.com/theneva/lehmann-tech/master/zsh-autocomplete.gif)
+![zsh-autosuggestions completes my vim command, adjusting as I type](https://raw.githubusercontent.com/theneva/lehmann-tech/master/packages/server/zsh-autocomplete.gif)
 
 Here, zsh-autosuggestions first attempts to complete my command to the last command I ran. As I type something that doesn't match its prediction, it adjusts the prediction. Hitting <kbd>→</kbd> completes the command.
