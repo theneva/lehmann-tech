@@ -4,7 +4,7 @@ import marked from 'marked';
 import highlight from 'highlight.js';
 
 marked.setOptions({
-  highlight: code => highlight.highlightAuto(code).value
+  highlight: code => highlight.highlightAuto(code).value,
 });
 
 type PostProps = RouteComponentProps<{ title: string }>;
@@ -19,7 +19,7 @@ type PostState = {
 
 class Post extends React.PureComponent<PostProps, PostState> {
   state: PostState = {
-    post: null
+    post: null,
   };
 
   componentWillMount() {
@@ -36,7 +36,7 @@ class Post extends React.PureComponent<PostProps, PostState> {
     const { post } = this.state;
 
     if (post == null) {
-      return 'loading…';
+      return null;
     }
 
     return (

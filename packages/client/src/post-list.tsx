@@ -27,7 +27,7 @@ export default class PostList extends React.PureComponent<
     const { posts } = this.state;
 
     if (posts.length === 0) {
-      return 'Loading…';
+      return null;
     }
 
     return (
