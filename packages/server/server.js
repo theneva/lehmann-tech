@@ -40,9 +40,10 @@ app.get('/posts/:title', (req, res) => {
     });
 });
 
-app.listen(5678, err => {
+const port = process.env.PORT ?? 5678;
+app.listen(port, err => {
   if (err) throw new Error(err);
-  console.log('listening on port', 5678);
+  console.log(`listening on http://localhost:${port}`);
 });
 
 // Default to always serving up index.html for client-side routing
